@@ -1,6 +1,7 @@
 package ru.melody.web.steps.DialogSteps.AssertsForDialog;
 
 import org.assertj.core.api.Assertions;
+import ru.melody.web.model.LocationOfElement.Dialog.PageWithInnerObjects;
 import ru.melody.web.model.Pages.Document;
 import ru.melody.web.model.Pages.Form;
 import ru.melody.web.model.Pages.Operations.Operation;
@@ -9,6 +10,7 @@ import ru.melody.web.steps.DialogSteps.DialogSteps;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.codeborne.selenide.Condition.visible;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.testng.Assert.fail;
 
@@ -18,7 +20,7 @@ public class AssertsForDialog extends DialogSteps {
     public AssertsForDialog() {
     }
 
-    public AssertsForDialog(Form currentDialog, ru.melody.web.model.LocationOfElement.Toolbar currentTabWithInnerObjects) {
+    public AssertsForDialog(Form currentDialog, PageWithInnerObjects currentTabWithInnerObjects) {
         DialogSteps.currentDialog = currentDialog;
         DialogSteps.currentLocationOfTabWithInnerObjects = currentTabWithInnerObjects;
     }
@@ -105,35 +107,49 @@ public class AssertsForDialog extends DialogSteps {
     }
 
     /**
+     * Проверяем отображение объекта в гриде
+     *
+     * @param nameOfObjectInTheGrid уникальный текст по которому ищем объект в гриде (наименование объекта)
+     */
+    public AssertsForDialog itemDisplayed(String nameOfObjectInTheGrid) {
+        return new InnerItemVerification().itemDisplayed(nameOfObjectInTheGrid, currentLocationOfTabWithInnerObjects);
+    }
+
+    /**
+     * Проверяем исчезновение объекта в гриде
+     *
+     * @param nameOfObjectInTheGrid уникальный текст по которому ищем объект в гриде (наименование объекта)
+     */
+    public AssertsForDialog itemDisappear(String nameOfObjectInTheGrid) {
+        return new InnerItemVerification().itemDisappear(nameOfObjectInTheGrid, currentLocationOfTabWithInnerObjects);
+        }
+
+    /**
      * Проверяем, что цвет фона объекта - Зеленый.
      */
     public AssertsForDialog innerItemHasGreenBackground(String nameOfObjectInTheGrid) {
-        Assertions.assertThat(innerItemOnTabWithInnerObjects(new Document().setNameOfObjectForOpenInTheGrid(nameOfObjectInTheGrid)).getAttribute("class")).contains("bc_ccffcc");
-        return this;
+        return new InnerItemVerification().innerItemHasGreenBackground(nameOfObjectInTheGrid, currentLocationOfTabWithInnerObjects);
     }
 
     /**
      * Проверяем, что цвет фона объекта - Зеленый.
      */
     public AssertsForDialog innerItemHasGreenBackground(ru.melody.web.model.Pages.Form form) {
-        Assertions.assertThat(innerItemOnTabWithInnerObjects(form).getAttribute("class")).contains("bc_ccffcc");
-        return this;
+        return innerItemHasGreenBackground(form.getNameOfObjectForOpenInTheGrid());
     }
 
     /**
      * Проверяем, что у объекта отсутствует цвет фона.
      */
     public AssertsForDialog innerItemDoesNotHaveColorOnBackground(String nameOfObjectInTheGrid) {
-        Assertions.assertThat(innerItemOnTabWithInnerObjects(new Document().setNameOfObjectForOpenInTheGrid(nameOfObjectInTheGrid)).getAttribute("class")).doesNotContain("bc_");
-        return this;
+        return new InnerItemVerification().innerItemDoesNotHaveColorOnBackground(nameOfObjectInTheGrid, currentLocationOfTabWithInnerObjects);
     }
 
     /**
      * Проверяем, что у объекта отсутствует цвет фона.
      */
     public AssertsForDialog innerItemDoesNotHaveColorOnBackground(ru.melody.web.model.Pages.Form form) {
-        Assertions.assertThat(innerItemOnTabWithInnerObjects(form).getAttribute("class")).doesNotContain("bc_");
-        return this;
+        return innerItemDoesNotHaveColorOnBackground(form.getNameOfObjectForOpenInTheGrid());
     }
 
 }

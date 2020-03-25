@@ -1,5 +1,6 @@
 package ru.melody.web.steps.DialogSteps;
 
+import ru.melody.web.model.LocationOfElement.Dialog.PageWithInnerObjects;
 import ru.melody.web.model.Pages.Form;
 
 public class EditFilesOfFormSteps extends DialogSteps {
@@ -7,7 +8,7 @@ public class EditFilesOfFormSteps extends DialogSteps {
     public EditFilesOfFormSteps() {
     }
 
-    public EditFilesOfFormSteps(Form currentDialog, ru.melody.web.model.LocationOfElement.Toolbar currentTabWithInnerObjects) {
+    public EditFilesOfFormSteps(Form currentDialog, PageWithInnerObjects currentTabWithInnerObjects) {
         DialogSteps.currentDialog = currentDialog;
         DialogSteps.currentLocationOfTabWithInnerObjects = currentTabWithInnerObjects;
     }

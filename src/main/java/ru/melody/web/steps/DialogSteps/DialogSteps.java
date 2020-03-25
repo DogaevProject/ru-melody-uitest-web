@@ -4,6 +4,7 @@ package ru.melody.web.steps.DialogSteps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
+import ru.melody.web.model.LocationOfElement.Dialog.PageWithInnerObjects;
 import ru.melody.web.steps.BaseSteps;
 import ru.melody.web.elements.FormForAddingUserElements;
 import ru.melody.web.model.Administration.Users.Employee;
@@ -26,7 +27,7 @@ import static org.testng.AssertJUnit.fail;
 public class DialogSteps extends BaseSteps {
 
     public static Form currentDialog; // окно с которым работаем в данный момент
-    public static ru.melody.web.model.LocationOfElement.Toolbar currentLocationOfTabWithInnerObjects; // расположение тулбара со вложенными объектами с которым работаем в данный момент
+    public static PageWithInnerObjects currentLocationOfTabWithInnerObjects; // расположение тулбара со вложенными объектами с которым работаем в данный момент
     protected FormForAddingUserElements formForAddingUserElements = page(FormForAddingUserElements.class);
 
     /**
@@ -53,7 +54,7 @@ public class DialogSteps extends BaseSteps {
         return new Document().setFormLocation(currentDialog.getFormLocation());
     }
 
-    ru.melody.web.model.LocationOfElement.Toolbar getCurrentLocationOfTabWithInnerObjects() {
+    PageWithInnerObjects getCurrentLocationOfTabWithInnerObjects() {
         return currentLocationOfTabWithInnerObjects;
     }
 

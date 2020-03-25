@@ -95,7 +95,7 @@ public class IncomingDocumentTest extends IncomingDocument {
     @Test(dataProvider = "Step_Incoming_3", dataProviderClass = IncomingDocument.class, dependsOnMethods = "verifyDocument2")
     public void verifyDocument3(Employee employee, Folder folder, Document document, Folder[] foldersInWhichDocumentShouldBe, Folder[] foldersInWhichDocumentShouldBe2, Folder[] foldersInWhichDocumentNotShouldBe) throws Exception {
         loginSteps.loginAs(employee).waitLoadMainPage();
-        mainPageSteps.assertThatInGrid().itemDisplayed(nameOfObjectForOpenInTheGrid, foldersInWhichDocumentShouldBe); // todo ошибка в системе поиск не ищет Р-53*
+        mainPageSteps.assertThatInGrid().itemDisplayed(nameOfObjectForOpenInTheGrid, foldersInWhichDocumentShouldBe);
         mainPageSteps
                 .openItemOfMenuTree(folder)
                 .openItemInGridInCurrentWindow(nameOfObjectForOpenInTheGrid);
@@ -111,7 +111,7 @@ public class IncomingDocumentTest extends IncomingDocument {
     @Test(dataProvider = "Step_Incoming_4", dataProviderClass = IncomingDocument.class, dependsOnMethods = "verifyDocument3")
     public void verifyDocument4(Employee employee, Folder folder, Document document, Folder[] foldersInWhichDocumentShouldBe) throws Exception {
         loginSteps.loginAs(employee).waitLoadMainPage();
-        mainPageSteps.assertThatInGrid().itemDisplayed(nameOfObjectForOpenInTheGrid, foldersInWhichDocumentShouldBe);
+        mainPageSteps.assertThatInGrid().itemDisplayed(nameOfObjectForOpenInTheGrid, foldersInWhichDocumentShouldBe); // todo в Меня ждут не попал
         mainPageSteps
                 .openItemOfMenuTree(folder)
                 .openItemInGridInCurrentWindow(nameOfObjectForOpenInTheGrid);

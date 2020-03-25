@@ -1,12 +1,14 @@
 package ru.melody.web.steps.MainPageSteps.AssertsForMainPageSteps;
 
 import ru.melody.web.elements.FoldersElements;
+import ru.melody.web.steps.DialogSteps.AssertsForDialog.AssertsForDialog;
+import ru.melody.web.steps.DialogSteps.AssertsForDialog.InnerItemVerification;
 import ru.melody.web.steps.MainPageSteps.MainPageSteps;
 import ru.melody.web.steps.DialogSteps.AssertsForDialog.OperationsVerifications;
 import ru.melody.web.model.Folder.Folder;
 import ru.melody.web.model.Pages.Form;
 import ru.melody.web.model.Pages.Operations.Operation;
-import ru.melody.web.model.LocationOfElement.Grid.ToolbarOfGridFolder;
+import ru.melody.web.model.LocationOfElement.Grid.GridFolder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,12 +22,30 @@ import static org.assertj.core.api.Assertions.*;
  */
 public class AssertionsForGridOfMainPage extends MainPageSteps {
 
-    private FoldersElements folderElements = page(FoldersElements.class);
+    /**
+     * Проверяем отображение объекта в гриде ПМ
+     *
+     * @param form   - getNameOfObjectForOpenInTheGrid  уникальный текст по которому ищем объект в гриде (наименование объекта)
+     */
+    public AssertionsForGridOfMainPage itemDisplayed(Form form) {
+        itemDisplayed(form.getNameOfObjectForOpenInTheGrid());
+        return this;
+    }
 
     /**
      * Проверяем отображение объекта в гриде ПМ
      *
-     * @param form   - getNameOfObjectForOpenInTheGrid  уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование объекта)
+     */
+    public AssertionsForGridOfMainPage itemDisplayed(String nameOfObjectForOpenInTheGrid) {
+        new InnerItemVerification().itemDisplayed(nameOfObjectForOpenInTheGrid, new GridFolder());
+        return this;
+    }
+
+    /**
+     * Проверяем отображение объекта в гриде ПМ
+     *
+     * @param form   - getNameOfObjectForOpenInTheGrid  уникальный текст по которому ищем объект в гриде (наименование объекта)
      * @param folder ПМ в к-м будет содержаться объект
      */
     public AssertionsForGridOfMainPage itemDisplayed(Form form, Folder folder) {
@@ -36,12 +56,12 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
     /**
      * Проверяем отображение объекта в гриде ПМ
      *
-     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование объекта)
      * @param folder                       ПМ в к-м будет содержаться объект
      */
     public AssertionsForGridOfMainPage itemDisplayed(String nameOfObjectForOpenInTheGrid, Folder folder) {
-        openItemOfMenuTree(folder);  // входим в созданную папку
-        findItemInGrid(nameOfObjectForOpenInTheGrid, folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid));
+        openItemOfMenuTree(folder);
+        itemDisplayed(nameOfObjectForOpenInTheGrid);
         return this;
     }
 
@@ -49,7 +69,7 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
     /**
      * Проверяем отображение объекта в гриде ПМ - массовая проверка в нескольких ПМ
      *
-     * @param form    - getNameOfObjectForOpenInTheGrid  уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param form    - getNameOfObjectForOpenInTheGrid  уникальный текст по которому ищем объект в гриде (наименование объекта)
      * @param folders ПМ в к-м будет содержаться объект
      */
     public AssertionsForGridOfMainPage itemDisplayed(Form form, Folder[] folders) {
@@ -60,13 +80,13 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
     /**
      * Проверяем отображение объекта в гриде ПМ - массовая проверка в нескольких ПМ
      *
-     * @param nameOfObjectForOpenInTheGrid -  уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param nameOfObjectForOpenInTheGrid -  уникальный текст по которому ищем объект в гриде (наименование объекта)
      * @param folders                      ПМ в к-м будет содержаться объект
      */
     public AssertionsForGridOfMainPage itemDisplayed(String nameOfObjectForOpenInTheGrid, Folder[] folders) {
         for (Folder folder : folders) {
-            openItemOfMenuTree(folder);  // входим в созданную папку
-            findItemInGrid(nameOfObjectForOpenInTheGrid, folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid));
+            openItemOfMenuTree(folder);
+            itemDisplayed(nameOfObjectForOpenInTheGrid);
         }
         return this;
     }
@@ -75,7 +95,28 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
     /**
      * Проверяем исчезновение объекта в гриде ПМ
      *
-     * @param form - getNameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде
+     */
+    public AssertionsForGridOfMainPage itemDisappear(String nameOfObjectForOpenInTheGrid) {
+        new InnerItemVerification().itemDisappear(nameOfObjectForOpenInTheGrid, new GridFolder());
+        return this;
+    }
+
+    /**
+     * Проверяем исчезновение объекта в гриде ПМ
+     *
+     * @param form - getNameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование объекта)
+     */
+    public AssertionsForGridOfMainPage itemDisappear(Form form) {
+        itemDisappear(form.getNameOfObjectForOpenInTheGrid());
+        return this;
+    }
+
+
+    /**
+     * Проверяем исчезновение объекта в гриде ПМ
+     *
+     * @param form - getNameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование объекта)
      */
     public AssertionsForGridOfMainPage itemDisappear(Form form, Folder folder) {
         itemDisappear(form.getNameOfObjectForOpenInTheGrid(), folder);
@@ -83,80 +124,20 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
     }
 
     /**
-     * Проверяем, что цвет фона объекта в гриде ПМ - Зеленый. Проверка с переходом в ПМ.
-     *
-     *
-     */
-    public AssertionsForGridOfMainPage itemHasGreenBackground(String nameOfObjectForOpenInTheGrid, Folder[] folders) {
-        for (Folder folder : folders) {
-            openItemOfMenuTree(folder);  // входим в созданную папку
-            findItemInGrid(nameOfObjectForOpenInTheGrid, folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid));
-            assertThat(folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).getAttribute("class")).contains("bc_ccffcc");
-        }
-        return this;
-    }
-
-    /**
-     *  Проверяем, что цвет фона объекта в гриде ПМ - Зеленый. Проверка без перехода в ПМ.
-     *
-     *
-     */
-    public AssertionsForGridOfMainPage itemHasGreenBackground(String nameOfObjectForOpenInTheGrid) {
-            findItemInGrid(nameOfObjectForOpenInTheGrid, folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid));
-            assertThat(folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).getAttribute("class")).contains("bc_ccffcc");
-        return this;
-    }
-
-    /**
-     * Проверяем, что у объекта в гриде ПМ отсутствует цвет фона. Проверка с переходом в ПМ.
-     *
-     *
-     */
-    public AssertionsForGridOfMainPage itemDoesNotHaveColorOnBackground(String nameOfObjectForOpenInTheGrid, Folder[] folders) {
-        for (Folder folder : folders) {
-            openItemOfMenuTree(folder);  // входим в созданную папку
-            findItemInGrid(nameOfObjectForOpenInTheGrid, folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid));
-            assertThat(folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).getAttribute("class")).doesNotContain("bc_");
-        }
-        return this;
-    }
-
-    /**
-     *  Проверяем, что у объекта в гриде ПМ отсутствует цвет фона. Проверка без перехода в ПМ.
-     *
-     */
-    public AssertionsForGridOfMainPage itemDoesNotHaveColorOnBackground(String nameOfObjectForOpenInTheGrid) {
-        findItemInGrid(nameOfObjectForOpenInTheGrid, folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid));
-        assertThat(folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).getAttribute("class")).doesNotContain("bc_");
-        return this;
-    }
-
-    /**
      * Проверяем исчезновение объекта в гриде ПМ
      *
-     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде
      */
     public AssertionsForGridOfMainPage itemDisappear(String nameOfObjectForOpenInTheGrid, Folder folder) {
-        openItemOfMenuTree(folder);  // открываем пм
-        if (!folderElements.getAllItemsInTheGridOfFolder().isEmpty()) {
-            try {
-                folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).shouldNotBe(visible);
-            } catch (Error e) {
-                System.out.println("документ не должен отображаться в гриде");
-                e.printStackTrace();
-                // в случае, если документ еще отображается в гриде, т.к грид автоматически не обновился, то принудительно обновляем его через поиск
-            }
-            // всегда проверяем наличие документа через поиск, т.к возможно документа нет только на первой странице грида с бесконечным скроллом.
-            findItemInGridWiaSearchField(nameOfObjectForOpenInTheGrid);
-            folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).shouldNotBe(visible);
-        }
+        openItemOfMenuTree(folder);
+        itemDisappear(nameOfObjectForOpenInTheGrid);
         return this;
     }
 
     /**
      * Проверяем исчезновение объекта в гриде ПМ - массовая проверка в нескольких ПМ
      *
-     * @param form - getNameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param form - getNameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде
      */
     public AssertionsForGridOfMainPage itemDisappear(Form form, Folder[] folders) {
         itemDisappear(form.getNameOfObjectForOpenInTheGrid(), folders);
@@ -166,18 +147,54 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
     /**
      * Проверяем исчезновение объекта в гриде ПМ - массовая проверка в нескольких ПМ
      *
-     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде (наименование документа)
+     * @param nameOfObjectForOpenInTheGrid уникальный текст по которому ищем объект в гриде
      */
     public AssertionsForGridOfMainPage itemDisappear(String nameOfObjectForOpenInTheGrid, Folder[] folders) {
         for (Folder folder : folders) {
-            openItemOfMenuTree(folder);  // входим в созданную папку
-            if (!folderElements.getAllItemsInTheGridOfFolder().isEmpty()) {
-                folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).shouldNotBe(visible);
-                // возможно элемента нет на первой странице бесконечного скролла  - ищем через поиск.
-                findItemInGridWiaSearchField(nameOfObjectForOpenInTheGrid);
-                folderElements.getItemInTheGrid(nameOfObjectForOpenInTheGrid).shouldNotBe(visible);
-            }
+            itemDisappear(nameOfObjectForOpenInTheGrid, folder);
         }
+        return this;
+    }
+
+    /**
+     * Проверяем, что цвет фона объекта в гриде ПМ - Зеленый. Проверка с переходом в ПМ.
+     *
+     */
+    public AssertionsForGridOfMainPage itemHasGreenBackground(String nameOfObjectForOpenInTheGrid, Folder[] folders) {
+        for (Folder folder : folders) {
+            openItemOfMenuTree(folder);
+            itemHasGreenBackground(nameOfObjectForOpenInTheGrid);
+        }
+        return this;
+    }
+
+    /**
+     *  Проверяем, что цвет фона объекта в гриде ПМ - Зеленый. Проверка без перехода в ПМ.
+     *
+     */
+    public AssertionsForGridOfMainPage itemHasGreenBackground(String nameOfObjectForOpenInTheGrid) {
+        new InnerItemVerification().innerItemHasGreenBackground(nameOfObjectForOpenInTheGrid, new GridFolder());
+        return this;
+    }
+
+    /**
+     * Проверяем, что у объекта в гриде ПМ отсутствует цвет фона. Проверка с переходом в ПМ.
+     *
+     */
+    public AssertionsForGridOfMainPage itemDoesNotHaveColorOnBackground(String nameOfObjectForOpenInTheGrid, Folder[] folders) {
+        for (Folder folder : folders) {
+            openItemOfMenuTree(folder);
+            itemDoesNotHaveColorOnBackground(nameOfObjectForOpenInTheGrid);
+        }
+        return this;
+    }
+
+    /**
+     *  Проверяем, что у объекта в гриде ПМ отсутствует цвет фона. Проверка без перехода в ПМ.
+     *
+     */
+    public AssertionsForGridOfMainPage itemDoesNotHaveColorOnBackground(String nameOfObjectForOpenInTheGrid) {
+        new InnerItemVerification().innerItemDoesNotHaveColorOnBackground(nameOfObjectForOpenInTheGrid, new GridFolder());
         return this;
     }
 
@@ -189,7 +206,7 @@ public class AssertionsForGridOfMainPage extends MainPageSteps {
         if (operations != null) {
             ArrayList<Operation> operationArrayList = new ArrayList<>();
             // для объектов Operation добавляем текущий диалог в setLocationToolbar. Нужно для метода проверки доступных операций
-            Arrays.asList(operations).forEach(operation -> operationArrayList.add(operation.setLocationToolbar(new ToolbarOfGridFolder())));
+            Arrays.asList(operations).forEach(operation -> operationArrayList.add(operation.setLocationToolbar(new GridFolder())));
             new OperationsVerifications().verifyOperations(operationArrayList.toArray(new Operation[0]));
         }
         return this;

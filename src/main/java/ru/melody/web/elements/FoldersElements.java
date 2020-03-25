@@ -75,13 +75,4 @@ public class FoldersElements {
         return $(By.xpath("//*[text()='" + nameOfItem + "']//ancestor::table"));
     }
 
-
-    /**
-     * Набор видимых объектов (документы) в гриде ПМ
-     */
-    public ElementsCollection getAllItemsInTheGridOfFolder() {
-        return $$(By.xpath("//a[contains(@href,'/open')]//ancestor::table"));
-    }
-
-
 }

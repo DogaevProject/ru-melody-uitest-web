@@ -31,6 +31,6 @@ public class ExecutionOperationInGridFolder extends ExecutionOperation  {
 
     @Override
     public SelenideElement selectItem(String nameOfItem) {
-        return null;
+        return $(By.xpath("//*[text()='" + nameOfItem + "']//ancestor::td"));
     }
 }

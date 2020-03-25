@@ -12,7 +12,7 @@ import ru.melody.web.model.ItemRouteScheme;
 /**
  * Данные
  */
-public abstract class OutgoingDocument extends BaseDataProvider {
+public abstract class OutgoingDocument extends SedBelgu {
 
     Form routeSchemeForDocument_Step_1 = new RouteScheme()
             .setItemRouteSchemeForEdit(new ItemRouteScheme[]{

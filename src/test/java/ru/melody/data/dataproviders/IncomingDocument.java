@@ -16,10 +16,10 @@ import static ru.melody.utils.GenericDate.nowDateWithoutTime;
 /**
  * Данные
  */
-public abstract class IncomingDocument extends BaseDataProvider {
+public abstract class IncomingDocument extends SedBelgu {
 
 
-    protected String nameOfObjectForOpenInTheGrid = "Р-67*"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
+    protected String nameOfObjectForOpenInTheGrid = "Р-9*"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
 
     // Регистрация входящего документа с проектом резолюции из ПМ «Входящие документы» (Асина М.В.)
 

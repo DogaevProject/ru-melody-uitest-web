@@ -293,7 +293,7 @@ public abstract class BaseSteps {
         } catch (Error error) {
             System.out.println("Объект НЕ найден в гриде, возможно отсутствует на первой странице");
             error.printStackTrace();
-            // возможно элемента нет на первой странице бесконечного скролла  - ищем через поиск.
+            // возможно элемента нет на первой странице - ищем через поиск.
             findItemInGridWiaSearchField(nameOfObjectInTheGrid);
             itemInTheGrid.waitUntil(visible, 5000);
         }

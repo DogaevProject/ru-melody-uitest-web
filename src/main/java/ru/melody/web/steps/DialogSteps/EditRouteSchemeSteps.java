@@ -2,6 +2,7 @@ package ru.melody.web.steps.DialogSteps;
 
 import com.codeborne.selenide.Condition;
 import ru.melody.web.elements.RouteTabElements;
+import ru.melody.web.model.LocationOfElement.Dialog.PageWithInnerObjects;
 import ru.melody.web.model.Pages.Form;
 import ru.melody.web.model.Pages.RouteScheme;
 import ru.melody.web.model.ItemRouteScheme;
@@ -16,7 +17,7 @@ public class EditRouteSchemeSteps extends DialogSteps {
     public EditRouteSchemeSteps() {
     }
 
-    public EditRouteSchemeSteps(Form currentDialog, ru.melody.web.model.LocationOfElement.Toolbar currentTabWithInnerObjects) {
+    public EditRouteSchemeSteps(Form currentDialog, PageWithInnerObjects currentTabWithInnerObjects) {
         DialogSteps.currentDialog = currentDialog;
         DialogSteps.currentLocationOfTabWithInnerObjects = currentTabWithInnerObjects;
     }

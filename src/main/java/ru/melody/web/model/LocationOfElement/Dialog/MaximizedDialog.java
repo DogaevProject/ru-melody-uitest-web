@@ -4,6 +4,8 @@ import ru.melody.web.elements.ExecuteOperations.ExecutionOperation;
 import ru.melody.web.elements.ExecuteOperations.ExecutionOperationInMaximizedDialog;
 import ru.melody.web.elements.FillFields.FillFields;
 import ru.melody.web.elements.FillFields.FillFieldsInMaximizedDialog;
+import ru.melody.web.elements.InnerItemsVerification.InnerItemsVerification;
+import ru.melody.web.elements.InnerItemsVerification.InnerItemsVerificationOnTabWithInnerObjectsInMaximizedDialog;
 import ru.melody.web.elements.OperationsVerifications.OperationsVerifications;
 import ru.melody.web.elements.OperationsVerifications.OperationsVerificationsInMaximizedDialog;
 import ru.melody.web.elements.FieldsVerifications.FieldsVerifications;

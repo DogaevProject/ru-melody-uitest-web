@@ -5,7 +5,7 @@ import ru.melody.web.elements.FoldersElements;
 import ru.melody.web.steps.MainPageSteps.AssertsForMainPageSteps.AssertionsForGridOfMainPage;
 import ru.melody.web.model.Folder.Folder;
 import ru.melody.web.model.Pages.Form;
-import ru.melody.web.model.LocationOfElement.Grid.ToolbarOfGridFolder;
+import ru.melody.web.model.LocationOfElement.Grid.GridFolder;
 import ru.melody.web.model.LocationOfElement.Toolbar;
 import ru.melody.web.steps.BaseSteps;
 
@@ -138,7 +138,7 @@ public class MainPageSteps extends BaseSteps {
      * @param nameOfOperation
      */
     public MainPageSteps clickButtonInGrid(String nameOfOperation) {
-        Toolbar page = new ToolbarOfGridFolder();
+        Toolbar page = new GridFolder();
         clickButton(page, nameOfOperation);
         return this;
     }

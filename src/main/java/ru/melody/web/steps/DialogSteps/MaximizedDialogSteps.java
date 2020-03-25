@@ -1,5 +1,6 @@
 package ru.melody.web.steps.DialogSteps;
 
+import ru.melody.web.model.LocationOfElement.Dialog.PageWithInnerObjects;
 import ru.melody.web.model.Pages.Document;
 import ru.melody.web.model.Pages.Form;
 import ru.melody.web.model.LocationOfElement.Dialog.TabWithInnerObjectsInMaximizedDialog;
@@ -16,7 +17,7 @@ public class MaximizedDialogSteps extends EditFormSteps {
     }
 
 
-     ru.melody.web.model.LocationOfElement.Toolbar getCurrentLocationOfTabWithInnerObjects() {
+     PageWithInnerObjects getCurrentLocationOfTabWithInnerObjects() {
         return new TabWithInnerObjectsInMaximizedDialog();
     }
 

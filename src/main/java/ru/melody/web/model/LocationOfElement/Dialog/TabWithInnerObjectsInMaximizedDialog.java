@@ -2,14 +2,15 @@ package ru.melody.web.model.LocationOfElement.Dialog;
 
 import ru.melody.web.elements.ExecuteOperations.ExecutionOperation;
 import ru.melody.web.elements.ExecuteOperations.ExecutionOperationOnTabWithInnerObjectsInMaximizedDialog;
+import ru.melody.web.elements.InnerItemsVerification.InnerItemsVerification;
+import ru.melody.web.elements.InnerItemsVerification.InnerItemsVerificationOnTabWithInnerObjectsInMaximizedDialog;
 import ru.melody.web.elements.OperationsVerifications.OperationsVerifications;
 import ru.melody.web.elements.OperationsVerifications.OperationsVerificationsOnTabWithInnerObjectsInMaximizedDialog;
-import ru.melody.web.model.LocationOfElement.Toolbar;
 
 /**
  * Вкладка Резолюции, Проверка исполнения и др.
  */
-public class TabWithInnerObjectsInMaximizedDialog implements Toolbar {
+public class TabWithInnerObjectsInMaximizedDialog extends PageWithInnerObjects {
 
     @Override
     public OperationsVerifications verifyOperation() {
@@ -19,6 +20,12 @@ public class TabWithInnerObjectsInMaximizedDialog implements Toolbar {
     @Override
     public ExecutionOperation executionOperation() {
         return new ExecutionOperationOnTabWithInnerObjectsInMaximizedDialog();
+    }
+
+
+    @Override
+    public InnerItemsVerification verifyInnerItems() {
+        return new InnerItemsVerificationOnTabWithInnerObjectsInMaximizedDialog();
     }
 
 }
