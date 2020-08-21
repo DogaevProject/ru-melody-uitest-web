@@ -16,8 +16,25 @@ public class FillFieldsInMaximizedDialog extends FillFields {
         return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
                 formElements.getElementOfActiveTabInLastMaximizedDialog() +
                 "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
-                "//span[@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//textarea"));
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//textarea"));
 
+    }
+
+    @Override
+    public SelenideElement getTextBox(String fieldName) {
+        return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
+                formElements.getElementOfActiveTabInLastMaximizedDialog() +
+                "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//div[@role=\"textbox\"]"));
+
+    }
+
+    @Override
+    public SelenideElement getCheckBox(String fieldName) {
+        return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
+                formElements.getElementOfActiveTabInLastMaximizedDialog() +
+                "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//span[contains(@class,\"x-form-checkbox\")]"));
     }
 
     @Override
@@ -25,7 +42,7 @@ public class FillFieldsInMaximizedDialog extends FillFields {
         return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
                 formElements.getElementOfActiveTabInLastMaximizedDialog() +
                 "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
-                "//span[@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//input"));
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//input"));
     }
 
     @Override
@@ -33,7 +50,7 @@ public class FillFieldsInMaximizedDialog extends FillFields {
         return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
                 formElements.getElementOfActiveTabInLastMaximizedDialog() +
                 "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
-                "//span[@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//li"));
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//li"));
 
     }
 
@@ -44,13 +61,13 @@ public class FillFieldsInMaximizedDialog extends FillFields {
         $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
                 formElements.getElementOfActiveTabInLastMaximizedDialog() +
                 "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
-                "//span[@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')]" +
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]" +
                 "/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//li")).click();
 
         return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
                 formElements.getElementOfActiveTabInLastMaximizedDialog() +
                 "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
-                "//span[@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')]" +
+                "//span[(@data-ref=\"labelTextEl\" and contains(text(),'" + fieldName + "')) or (@data-qtip and contains(text(),\'" + fieldName + "'))]" +
                 "/ancestor::div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\"]//li" +
                 "//span[@class=\"x-boundlist-action x-boundlist-action-last-1 m4_span_add_file_sys_icon x-boundlist-add\"]"));
     }

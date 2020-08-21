@@ -93,7 +93,7 @@ public class FieldObject {
 
 
     /**
-     * Значение поля задачи  - тип Логический
+     * Значение поля  - тип Логический
      */
     public boolean getValueBooleanField() {
         return valueBooleanField;

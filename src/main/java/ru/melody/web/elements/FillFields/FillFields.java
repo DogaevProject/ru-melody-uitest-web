@@ -32,6 +32,10 @@ public abstract class FillFields {
 
     public abstract SelenideElement getTextArea(String fieldName);
 
+    public abstract SelenideElement getTextBox(String fieldName);
+
+    public abstract SelenideElement getCheckBox(String fieldName);
+
     public abstract SelenideElement getAddButtonFile(String fieldName); //кнопка добавления файла в поле типа Файл
 
 }

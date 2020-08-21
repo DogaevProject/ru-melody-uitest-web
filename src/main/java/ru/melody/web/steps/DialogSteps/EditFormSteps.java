@@ -34,7 +34,7 @@ public class EditFormSteps extends DialogSteps {
             AssertJUnit.fail("Отсутствует параметр FormLocation");
         }
         for (FieldObject fieldObject : form.getFieldsForAddValue()) {
-            if (fieldObject.getListValueField() == null & fieldObject.getValueField() == null) {
+            if (fieldObject.getListValueField() == null & fieldObject.getValueField() == null & !(fieldObject.getFieldType() instanceof TypeListFieldsBoolean)) {
                 continue;
             }
 
@@ -62,7 +62,15 @@ public class EditFormSteps extends DialogSteps {
 
             // ТЕКСТ
             else if (fieldObject.getFieldType() instanceof TypeListFieldsText) {
-                enterValueInFieldText(form.getFormLocation(), fieldObject.getFieldName(), fieldObject.getValueField());
+                if (((TypeListFieldsText) fieldObject.getFieldType()).isResizable()) {
+                    enterValueInFieldTextResizable(form.getFormLocation(), fieldObject.getFieldName(), fieldObject.getValueField());
+                } else
+                    enterValueInFieldText(form.getFormLocation(), fieldObject.getFieldName(), fieldObject.getValueField());
+            }
+
+            // Логический
+            else if (fieldObject.getFieldType() instanceof TypeListFieldsBoolean) {
+                clickInFieldBoolean(form.getFormLocation(), fieldObject.getFieldName(), fieldObject.getValueBooleanField());
             }
 
             // ФАЙЛ
@@ -181,6 +189,39 @@ public class EditFormSteps extends DialogSteps {
     }
 
     /**
+     * Общий метод заполнения пользовательских полей типа Текст (авторасширяемое при введение символов)
+     *
+     * @param page      расположение поля
+     * @param nameField имя поля для заполнения
+     * @param valueLine передаваемое значение для заполнения
+     */
+    private void enterValueInFieldTextResizable(ru.melody.web.model.LocationOfElement.Dialog.Form page, String nameField, String valueLine) {
+        if (valueLine == null || nameField == null || page == null) {
+            fail(null);
+        }
+        page.fillFields().getTextBox(nameField).click();
+        page.fillFields().getTextArea(nameField).setValue(valueLine);
+    }
+
+    /**
+     * Общий метод заполнения полей типа Логический
+     *
+     * @param page      расположение поля
+     * @param nameField имя поля для заполнения
+     * @param value     передаваемое значение для заполнения
+     */
+    private void clickInFieldBoolean(ru.melody.web.model.LocationOfElement.Dialog.Form page, String nameField, Boolean value) {
+        if (nameField == null || page == null) {
+            fail(null);
+        }
+        if (value) {
+            page.fillFields().getCheckBox(nameField).click();
+        } else if (page.verifyValuesOfFields().getCheckBox(nameField).is(Condition.checked)) {
+            page.fillFields().getCheckBox(nameField).click();
+        }
+    }
+
+    /**
      * Прикрепление файлов в поле типа "Файл"
      *
      * @param page        расположение поля
@@ -238,6 +279,20 @@ public class EditFormSteps extends DialogSteps {
     }
 
     /**
+     * Добавление записи через кнопку добавления в поле (расположена напротив записи)
+     */
+    private void addItemInField(SelenideElement elementsOfFieldWithItems, String fieldName) {
+        if (elementsOfFieldWithItems == null) {
+            fail(null);
+        }
+        elementsOfFieldWithItems.click(); // устанавливаем курсор в поле
+        getCurrentDialog().getFormLocation().verifyFields().getElementsOfNameField(fieldName).click(); // снимаем фокус с поля
+        setCursorOnElementWithoutText(elementsOfFieldWithItems);  // Устанавливаем фокус на поле
+        $(By.xpath("(//li[@class=\"x-boundlist-item m4-boundlist-item x-boundlist-item-over\"]//span[contains(@class,\"x-boundlist-action x-boundlist-add\")])[last()]")).click(); // кнопка Добавления
+        sleep(700);
+    }
+
+    /**
      * Удаление записи из поля через кнопку "Удалить" (расположена напротив записи)
      *
      * @param elementsOfFieldWithItems - коллекция элементов содержащая набор видимых записей в поле
@@ -265,7 +320,17 @@ public class EditFormSteps extends DialogSteps {
     }
 
     /**
+     * Добавление записи в поле через кнопку добавления расположенную в поле
+     * - значение в поле по умолчанию отсутствует
+     */
+    public EditFormSteps addItemInField(String fieldName) {
+        addItemInField(getCurrentDialog().getFormLocation().fillFields().getInputStringChoiceInListField(fieldName), fieldName);
+        return this;
+    }
+
+    /**
      * Удаление пользователя из поля
+     *
      * @param nameOfUser можно указывать частично фио пользоватлея
      */
     public EditFormSteps deleteUserInField(String fieldName, String nameOfUser) {

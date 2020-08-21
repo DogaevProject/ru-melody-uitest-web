@@ -34,7 +34,7 @@ import static ru.melody.utils.ElementUtil.scrollToElement;
 public abstract class BaseSteps {
 
     protected LoginPageElements loginPageElements = page(LoginPageElements.class);
-    protected MainPageElements mainPageElements =page(MainPageElements.class);
+    protected MainPageElements mainPageElements = page(MainPageElements.class);
     protected FormElements formElements = page(FormElements.class);
     protected MaximizedDialog maximizedDialog = new MaximizedDialog();
     protected AlertDialog alertDialog = new AlertDialog();
@@ -117,15 +117,16 @@ public abstract class BaseSteps {
             assertEquals(currentList, shouldBeList);
         } catch (Error e) {
             return false;
-        } return true;
+        }
+        return true;
     }
 
     /**
      * Проверка наличия теста в списке элементов
      *
      * @param text проверяемый текст
-     *   false  если среди элементов в списке не находим с нужным текстом
-     *   true   если среди элементов в списке находим с нужным текстом
+     *             false  если среди элементов в списке не находим с нужным текстом
+     *             true   если среди элементов в списке находим с нужным текстом
      */
     protected boolean verifyThatTextContainsInTheListElements(String text, ElementsCollection elementsCollection) {
         for (SelenideElement element : elementsCollection) {
@@ -232,7 +233,7 @@ public abstract class BaseSteps {
     protected void setCursorOnElementWithText(ElementsCollection elementOfFieldWithItem, String valueOfField) {
         Actions builder = new Actions(getWebDriver());
         // Устанавливаем фокус на элемент
-        for (SelenideElement element: elementOfFieldWithItem) {
+        for (SelenideElement element : elementOfFieldWithItem) {
             element.waitUntil(visible, 2000);
             sleep(500);
             if (element.has(Condition.text(valueOfField))) {
@@ -243,11 +244,23 @@ public abstract class BaseSteps {
     }
 
     /**
-     * Очищаем поле через Ctrl+a+BACK_SPACE
+     * Устанавливаем курсор мыши на элемент без текста - прим. на поле
      *
      */
+    protected void setCursorOnElementWithoutText(SelenideElement element) {
+        Actions builder = new Actions(getWebDriver());
+        // Устанавливаем фокус на элемент
+        element.waitUntil(visible, 2000);
+        sleep(500);
+        builder.moveToElement(element)
+                .moveByOffset(0, 0).release().perform();
+    }
+
+    /**
+     * Очищаем поле через Ctrl+a+BACK_SPACE
+     */
     protected void clearTextInInputViaHotKeys(SelenideElement element) {
-       element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         element.sendKeys(Keys.BACK_SPACE);
     }
 
@@ -270,7 +283,7 @@ public abstract class BaseSteps {
     /**
      * Клик на кнопку на тулбаре
      *
-     * @param toolbar текущее расположение тулбара
+     * @param toolbar         текущее расположение тулбара
      * @param nameOfOperation название на кнопке операции
      */
     protected void clickButton(Toolbar toolbar, String nameOfOperation) {
@@ -285,7 +298,7 @@ public abstract class BaseSteps {
      * Ищем объект среди доступных на первой странице грида - Если не находим, то далее ищем через основной поиск
      *
      * @param nameOfObjectInTheGrid - отображаемое в гриде название объекта.
-     *                                     Это м.б любой текст по которому можно отличить нужный объект от остальных.
+     *                              Это м.б любой текст по которому можно отличить нужный объект от остальных.
      */
     protected void findItemInGrid(String nameOfObjectInTheGrid, SelenideElement itemInTheGrid) {
         try {

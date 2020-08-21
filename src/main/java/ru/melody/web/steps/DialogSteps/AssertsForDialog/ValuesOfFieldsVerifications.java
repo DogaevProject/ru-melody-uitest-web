@@ -58,6 +58,11 @@ class ValuesOfFieldsVerifications extends FieldsVerifications {
                     InNotEditableTypeText(fieldObject);
             }
 
+            // Логический
+            else if (fieldObject.getFieldType() instanceof TypeListFieldsBoolean) {
+                verifyValueInInputOfFieldBoolean(fieldObject.getValueBooleanField(), currentDialog.getFormLocation().verifyValuesOfFields().getCheckBox(fieldObject.getFieldName()));
+            }
+
             // ФАЙЛ
             else if (fieldObject.getFieldType() instanceof TypeListFieldsFile) {
                 InTypeStringWithLink(fieldObject);
@@ -204,5 +209,16 @@ class ValuesOfFieldsVerifications extends FieldsVerifications {
         element.waitUntil(Condition.exist, 2000).waitUntil(Condition.exactText(valueInInput), 4000);
     }
 
+    /**
+     * Проверка значения в поле типа Логический
+     *
+     * @param value   передаваемое значенние поля
+     * @param element элемент
+     */
+    private void verifyValueInInputOfFieldBoolean(Boolean value, SelenideElement element) {
+        if (value) {
+            element.waitUntil(Condition.exist, 2000).waitUntil(Condition.checked, 4000);
+        } else element.waitUntil(Condition.exist, 2000).waitUntil(Condition.not(Condition.checked), 4000);
+    }
 
 }

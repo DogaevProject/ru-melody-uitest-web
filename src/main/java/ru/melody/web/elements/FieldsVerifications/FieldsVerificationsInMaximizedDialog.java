@@ -24,7 +24,7 @@ public class FieldsVerificationsInMaximizedDialog extends FieldsVerifications {
         return $(By.xpath(formElements.getElementOfLastMaximizedDialog() +
                 formElements.getElementOfActiveTabInLastMaximizedDialog() +
                 "//div[@class=\"x-container x-form-fieldcontainer x-form-item x-form-item-default x-container-default x-autocontainer-form-item\" and not(contains(@style,\"display: none\"))]" +
-                "//span[@class=\"x-form-item-label-text\" and contains(@id,\"fieldcontainer\") and contains(text(),\'"+ fieldName + "')]"));
+                "//span[@class=\"x-form-item-label-text\" and contains(@id,\"fieldcontainer\") and contains(text(),\'"+ fieldName + "') or (@data-qtip and contains(text(),\'" + fieldName + "'))]"));
     }
 
 

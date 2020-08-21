@@ -37,4 +37,6 @@ public abstract class ValuesOfFieldsVerifications extends FieldsVerifications {
      */
     public abstract SelenideElement getInputTextNotEditable(String fieldName);
 
+    public abstract SelenideElement getCheckBox(String fieldName);
+
 }

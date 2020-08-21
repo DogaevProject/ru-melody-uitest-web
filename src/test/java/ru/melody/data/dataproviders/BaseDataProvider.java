@@ -96,6 +96,17 @@ public abstract class BaseDataProvider extends BaseTest {
     }
 
     /**
+     * ТЕКСТ - поле доступно для редактирования, авторасширяемое при вводе
+     * локатор - Заполнение: поле в теге <div>, но после клика в него заполнение в <textarea>.
+     * Проверка поля:  если в поле не был установлен курсор, то текст находится в теге  <div>. Если был установлен курсор, то <textarea>
+     */
+    protected FieldObject getFieldTextResizable() {
+        return new TypeListFieldsText()
+                .setFieldName("Текст " + randomString(10))
+                .setFieldType(new TypeListFieldsText().setResizable(true));
+    }
+
+    /**
      * ТЕКСТ - поле недоступно для редактирования
      * локатор - Проверка поля: текст находится в теге  <div>
      */
@@ -112,6 +123,14 @@ public abstract class BaseDataProvider extends BaseTest {
     protected FieldObject getFieldFile() {
         return new TypeListFieldsFile()
                 .setFieldType(new TypeListFieldsFile());
+    }
+
+    /**
+     * Логическое
+     */
+    protected FieldObject getFieldBoolean() {
+        return new TypeListFieldsBoolean()
+                .setFieldType(new TypeListFieldsBoolean());
     }
 
     //------------------------  Пользователи

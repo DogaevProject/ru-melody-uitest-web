@@ -15,7 +15,7 @@ public class MainPageElements {
      * Кнопка открытия главного меню
      */
     public SelenideElement getButtonMainMenu() {
-        return $(By.xpath("//div[@class=\"x-toolbar x-docked x-toolbar-default x-docked-top x-toolbar-docked-top x-toolbar-default-docked-top x-box-layout-ct x-noborder-trl\"]//div[@class=\"x-title-text x-title-text-default x-title-item\"]"));
+        return $(By.xpath("//div[@class=\"x-toolbar x-docked x-toolbar-default x-docked-top x-toolbar-docked-top x-toolbar-default-docked-top x-box-layout-ct x-noborder-trl\"]//div[contains(@class,\"x-title-text x-title-text-default x-title-item\")]"));
     }
 
     /*
