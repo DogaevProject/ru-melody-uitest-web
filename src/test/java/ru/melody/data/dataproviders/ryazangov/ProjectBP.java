@@ -10,10 +10,9 @@ import static ru.melody.utils.GenericDate.getDateWithDaysShifting;
 
 public class ProjectBP extends Ryazangov {
 
-    protected String nameOfObjectForOpenInTheGrid = "20/08 3"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
+    protected String nameOfObjectForOpenInTheGrid = "14/10 1"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
 
     private String mayor = "Майоров М.А. (министр имущественных и земельных отношений Рязанской области)";
-    //private String mayor = "Майоров М.А";
 
 
     Form getGeneralInitialOfProject() {
@@ -48,7 +47,7 @@ public class ProjectBP extends Ryazangov {
                             .setValueField("Решаемые проблемы"),
                     getFieldStringWithChoiceInListEmployers()
                             .setFieldName("ФИО заявителя")
-                            .setValueField("Абаева Р.Х."),
+                            .setValueField("Абаева Р.Х. (начальник отдела экологической безопасности)"),
             })
             .setValueFiles(new String[]{file[1]})
             .setOperation(new Operation[]{
@@ -97,11 +96,20 @@ public class ProjectBP extends Ryazangov {
 
 
     // вкладка Инициирование
-    Form projectTab2_Step_3 = getGeneralInitialOfProject()
+    Form projectTab1_Step_3 = getGeneralInitialOfProject()
             .setFieldsForAddValue(new FieldObject[]{
                     getFieldStringWithChoiceInListEmployers()
                             .setFieldName("Руководитель проекта")
                             .setValueField("Федюнина И.А.")
+            });
+
+
+    // вкладка Инициирование
+    Form projectTab2_Step_3 = getGeneralInitialOfProject()
+            .setFieldsForAddValue(new FieldObject[]{
+                    getFieldStringWithChoiceInListEmployers()
+                            .setFieldName("Связь с портфелем")
+                            .setValueField("№ 1. «Повышение эффективности управления общественными финансами Рязанской области»")
             });
 
 
@@ -111,6 +119,7 @@ public class ProjectBP extends Ryazangov {
                 {
                         employee3,
                         Initiation,
+                        projectTab1_Step_3,
                         projectTab2_Step_3
                 }
         };
@@ -465,6 +474,7 @@ public class ProjectBP extends Ryazangov {
         };
     }
 
+
     @DataProvider
     public Object[][] Step_Project_15() {
         return new Object[][]{
@@ -472,6 +482,18 @@ public class ProjectBP extends Ryazangov {
                         employee2,
                         Podgotovka,
 
+                }
+        };
+    }
+
+
+
+    @DataProvider
+    public Object[][] Step_Project_15_2() {
+        return new Object[][]{
+                {
+                        employee3,
+                        Podgotovka
                 }
         };
     }
@@ -556,13 +578,23 @@ public class ProjectBP extends Ryazangov {
                             .setValueField(file[1])
             });
 
+
+    Form item_1_Step_19 = new ru.melody.web.model.Pages.Form()
+            .setNameOfObjectForOpenInTheGrid("результат-1")
+            .setFieldsForAddValue(new FieldObject[]{
+                    getFieldString()
+                            .setFieldName("Федеральный бюджет, тыс. руб.")
+                            .setValueField("50500")
+
+            });
+
     @DataProvider
     public Object[][] Step_Project_19() {
         return new Object[][]{
                 {
                         employee7,
                         Realisation,
-                        item_1_Step_12,
+                        item_1_Step_19,
                         item_2_Step_12,
                         item_3_Step_12,
                         report_Step_19
@@ -670,16 +702,26 @@ public class ProjectBP extends Ryazangov {
             .setFieldsForAddValue(new FieldObject[]{
                     getFieldFile()
                             .setFieldName("Подписанный итоговый отчёт")
+                            .setValueField(file[1]),
+                    getFieldFile()
+                            .setFieldName("Протокол Проектного комитета с решением о закрытии проекта")
                             .setValueField(file[1])
-            })
-            .setOperation(new Operation[]{
-                    new Operation().setName("Приостановить"),
-                    new Operation().setName("Запрос на изменение"),
-                    new Operation().setName("Сохранить"),
-                    new Operation().setName("Закрыть")
             });
 
-    Form project_Step_26_2 = new ru.melody.web.model.Pages.Form()
+
+    @DataProvider
+    public Object[][] Step_Project_26() {
+        return new Object[][]{
+                {
+                        employee3,
+                        Completion,
+                        project_Step_26
+                }
+        };
+    }
+
+
+    Form project_Step_27 = new ru.melody.web.model.Pages.Form()
             .setFields(new FieldObject[]{
                     getFieldStringTypeLinkWithChoiceInList()
                             .setFieldName("Этап проекта")
@@ -689,16 +731,14 @@ public class ProjectBP extends Ryazangov {
                             .setValueField("Проект реализован успешно без отклонений"),
             });
 
-
     @DataProvider
-    public Object[][] Step_Project_26() {
+    public Object[][] Step_Project_27() {
         return new Object[][]{
                 {
                         employee6,
                         Completion,
                         ArchiveOfProjects,
-                        project_Step_26,
-                        project_Step_26_2,
+                        project_Step_27
                 }
         };
     }

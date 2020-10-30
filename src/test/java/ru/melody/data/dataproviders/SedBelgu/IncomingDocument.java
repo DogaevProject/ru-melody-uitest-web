@@ -1,4 +1,4 @@
-package ru.melody.data.dataproviders;
+package ru.melody.data.dataproviders.SedBelgu;
 
 import org.testng.annotations.DataProvider;
 import ru.melody.web.model.Administration.Users.Employee;

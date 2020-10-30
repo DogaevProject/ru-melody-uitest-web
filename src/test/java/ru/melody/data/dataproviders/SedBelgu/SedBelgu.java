@@ -1,6 +1,7 @@
-package ru.melody.data.dataproviders;
+package ru.melody.data.dataproviders.SedBelgu;
 
 import ru.melody.data.BaseTest;
+import ru.melody.data.dataproviders.BaseDataProvider;
 import ru.melody.web.model.Administration.Fields.Settings.SettingsForFields;
 import ru.melody.web.model.Administration.Fields.TypesOfFields.*;
 import ru.melody.web.model.Administration.Users.Employee;

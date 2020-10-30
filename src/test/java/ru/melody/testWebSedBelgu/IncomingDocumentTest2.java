@@ -6,7 +6,7 @@ import com.codeborne.selenide.testng.annotations.Report;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ru.melody.data.dataproviders.IncomingDocumentPartOfBPTest;
+import ru.melody.data.dataproviders.SedBelgu.IncomingDocumentPartOfBPTest;
 import ru.melody.web.steps.DialogSteps.MaximizedDialogSteps;
 import ru.melody.web.steps.MainPageSteps.MainPageSteps;
 
@@ -21,7 +21,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 @Listeners({ScreenShooter.class, TextReport.class})
 @Report
-public class IncomingDocumentTest2 extends ru.melody.data.dataproviders.IncomingDocumentTest2 {
+public class IncomingDocumentTest2 extends ru.melody.data.dataproviders.SedBelgu.IncomingDocumentTest2 {
 
     private LoginSteps loginSteps;
     private MainPageSteps mainPageSteps;

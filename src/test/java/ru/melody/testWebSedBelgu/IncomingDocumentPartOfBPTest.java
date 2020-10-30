@@ -19,7 +19,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 @Listeners({ScreenShooter.class, TextReport.class})
 @Report
-public class IncomingDocumentPartOfBPTest extends ru.melody.data.dataproviders.IncomingDocumentPartOfBPTest {
+public class IncomingDocumentPartOfBPTest extends ru.melody.data.dataproviders.SedBelgu.IncomingDocumentPartOfBPTest {
 
 
     private LoginSteps loginSteps;

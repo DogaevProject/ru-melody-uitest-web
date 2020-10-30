@@ -6,7 +6,7 @@ import com.codeborne.selenide.testng.annotations.Report;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import ru.melody.data.dataproviders.IncomingDocument;
+import ru.melody.data.dataproviders.SedBelgu.IncomingDocument;
 import ru.melody.web.steps.DialogSteps.MaximizedDialogSteps;
 import ru.melody.web.steps.MainPageSteps.MainPageSteps;
 import ru.melody.web.steps.LoginSteps.LoginSteps;

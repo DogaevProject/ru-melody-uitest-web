@@ -21,7 +21,7 @@ public abstract class BaseTest {
     @BeforeClass
     public void setUpConfigurations() throws Exception {
         setDriverByName("chrome_mac");
-        Configuration.baseUrl = http + "ryazangov-test.melody1.ru";
+        Configuration.baseUrl = http + "ryazangov-dev.melody1.ru";
         Configuration.timeout = 8000;
         TextReport.onSucceededTest = true;
         TextReport.onFailedTest = true;
