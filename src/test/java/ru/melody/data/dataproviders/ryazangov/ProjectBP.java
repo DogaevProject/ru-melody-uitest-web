@@ -10,7 +10,7 @@ import static ru.melody.utils.GenericDate.getDateWithDaysShifting;
 
 public class ProjectBP extends Ryazangov {
 
-    protected String nameOfObjectForOpenInTheGrid = "14/10 1"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
+    protected String nameOfObjectForOpenInTheGrid = "17/03 2"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
 
     private String mayor = "Майоров М.А. (министр имущественных и земельных отношений Рязанской области)";
 

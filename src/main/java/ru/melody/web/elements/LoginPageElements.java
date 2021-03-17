@@ -19,7 +19,7 @@ public class LoginPageElements {
     }
 
     public SelenideElement getLogon() {
-        return $(By.xpath("//input[@onclick=\"document.forms.F1.submit()\"]"));
+        return $(By.xpath("//input[@onclick=\"commonSubmit()\"]"));
     }
 
 }
