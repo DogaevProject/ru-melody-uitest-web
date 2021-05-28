@@ -353,8 +353,6 @@ public class ProjectTest extends ProjectBP {
 
         dialogSteps.clickTab("Реализация и контроль");
         dialogSteps.clickButtonInTabWithInnerObjects("Развернуть");
-        dialogSteps.selectInnerItem(item_3).clickButtonInTabWithInnerObjects("Принять в работу");
-        dialogSteps.assertThat().hasTextMessageInAlertDialog("Принято в работу").clickButtonInAlertDialog("OK");
 
         dialogSteps.selectInnerItem(item_3).clickButtonInTabWithInnerObjects("Предоставить отчет");
         dialogSteps.fillValuesInFields(report).clickButtonInMainToolbar("Предоставить отчет");
