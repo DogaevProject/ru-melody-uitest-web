@@ -4,6 +4,7 @@ package ru.melody.web.steps.DialogSteps;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
 import org.openqa.selenium.By;
 import org.testng.AssertJUnit;
 import ru.melody.web.model.Administration.Fields.Settings.SettingsForFields;
@@ -98,7 +99,12 @@ public class EditFormSteps extends DialogSteps {
         if (valueLine == null || nameField == null || page == null) {
             fail(null);
         }
-        page.fillFields().getInputStringField(nameField).click();
+        try {
+            page.fillFields().getInputStringField(nameField).waitUntil(Condition.visible, 1000);
+        } catch (ElementNotFound ignored) {
+            // может не успевать загрузиться окно которое не имеет вкладок и тогда отрабатывает условие по предыдущему окну в formElements.getElementOfActiveTabInLastMaximizedDialog(), что вкладка есть.
+        }
+        page.fillFields().getInputStringField(nameField).waitUntil(Condition.visible, 1000).click();
         page.fillFields().getInputStringField(nameField).setValue(valueLine);
     }
 

@@ -10,7 +10,7 @@ import static ru.melody.utils.GenericDate.getDateWithDaysShifting;
 
 public class ProjectBP extends Ryazangov {
 
-    protected String nameOfObjectForOpenInTheGrid = "17/03 2"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
+    protected String nameOfObjectForOpenInTheGrid = "23/11 5"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
 
     private String mayor = "Майоров М.А. (министр имущественных и земельных отношений Рязанской области)";
 
@@ -423,13 +423,31 @@ public class ProjectBP extends Ryazangov {
             });
 
     // Участники проекта - Администратор проекта
-    Form tab2_items_Step12 = new ru.melody.web.model.Pages.Form()
+    Form tab2_items1_Step12 = new ru.melody.web.model.Pages.Form()
+            .setNameOfObjectForOpenInTheGrid("Семенченко Ю.А.")
             .setFieldsForAddValue(new FieldObject[]{
                     getFieldString()
                             .setFieldName("Занятость в проекте, процентов (план)")
                             .setValueField("25"),
             });
 
+    // Участники проекта - Руководитель проекта
+    Form tab2_items2_Step12 = new ru.melody.web.model.Pages.Form()
+            .setNameOfObjectForOpenInTheGrid("Федюнина И.А.")
+            .setFieldsForAddValue(new FieldObject[]{
+                    getFieldString()
+                            .setFieldName("Занятость в проекте, процентов (план)")
+                            .setValueField("25"),
+            });
+
+    // Участники проекта - Участник проекта
+    Form tab2_items3_Step12 = new ru.melody.web.model.Pages.Form()
+            .setNameOfObjectForOpenInTheGrid("Белова О.В.")
+            .setFieldsForAddValue(new FieldObject[]{
+                    getFieldString()
+                            .setFieldName("Занятость в проекте, процентов (план)")
+                            .setValueField("25"),
+            });
     @DataProvider
     public Object[][] Step_Project_12() {
         return new Object[][]{
@@ -440,7 +458,9 @@ public class ProjectBP extends Ryazangov {
                         item_2_Step_12,
                         item_3_Step_12,
                         tab1_Step12,
-                        tab2_items_Step12
+                        tab2_items1_Step12,
+                        tab2_items2_Step12,
+                        tab2_items3_Step12
                 }
         };
     }

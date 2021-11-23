@@ -134,6 +134,6 @@ public abstract class BaseDataProvider extends BaseTest {
     }
 
     //------------------------  Пользователи
-    Employee platform = new Employee().setLoginName("platform").setPassword("melodym4");
+    Employee platform = new Employee().setLoginName("platform").setPassword("123");
 
 }

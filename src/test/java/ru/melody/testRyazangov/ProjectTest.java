@@ -88,7 +88,7 @@ public class ProjectTest extends ProjectBP {
         mainPageSteps
                 .openItemOfMenuTree(folder).openItemInGridInCurrentWindow(nameOfObjectForOpenInTheGrid);
 
-
+        dialogSteps.clickTab("Общая информация");
         dialogSteps.fillValuesInFields(projectTab1_Step_4).clickTab("Инициирование");
         dialogSteps.fillValuesInFields(projectTab2_Step_4);
 
@@ -135,7 +135,7 @@ public class ProjectTest extends ProjectBP {
     }
 
 
-     // Согласование основных параметров проекта - БезукладовДА
+    // Согласование основных параметров проекта - БезукладовДА
     @Test(dataProvider = "Step_Project_6_2", dataProviderClass = ProjectBP.class, dependsOnMethods = "verifyProject4")
     public void verifyProject4_2(Employee employee, Folder folder) {
         loginSteps.loginAs(employee).waitLoadMainPage();
@@ -207,7 +207,7 @@ public class ProjectTest extends ProjectBP {
 
     //Подготовка паспорта проекта - ФедюнинаИА
     @Test(dataProvider = "Step_Project_12", dataProviderClass = ProjectBP.class, dependsOnMethods = "verifyProject9")
-    public void verifyProject10(Employee employee, Folder folder, Form item_1, Form item_2, Form item_3, Form tab1_Step10, Form tab2_items_Step10) {
+    public void verifyProject10(Employee employee, Folder folder, Form item_1, Form item_2, Form item_3, Form tab1_Step10, Form tab2_items1_Step10, Form tab2_items2_Step10, Form tab2_items3_Step10) {
         loginSteps.loginAs(employee).waitLoadMainPage();
         mainPageSteps
                 .openItemOfMenuTree(folder).openItemInGridInCurrentWindow(nameOfObjectForOpenInTheGrid);
@@ -232,21 +232,16 @@ public class ProjectTest extends ProjectBP {
 
 
         dialogSteps.clickTab("Участники проекта");
-        dialogSteps.openItemOnTabWithInnerObjects("Администратор проекта");
-        dialogSteps.fillValuesInFields(tab2_items_Step10).clickButtonInMainToolbar("Сохранить");
+        dialogSteps.openItemOnTabWithInnerObjects(tab2_items1_Step10);
+        dialogSteps.fillValuesInFields(tab2_items1_Step10).clickButtonInMainToolbar("Сохранить");
 
 
         dialogSteps.clickTab("Участники проекта");
-        dialogSteps.openItemOnTabWithInnerObjects("Руководитель проекта");
-        dialogSteps.fillValuesInFields(tab2_items_Step10).clickButtonInMainToolbar("Сохранить");
+        dialogSteps.openItemOnTabWithInnerObjects(tab2_items2_Step10);
+        dialogSteps.fillValuesInFields(tab2_items2_Step10).clickButtonInMainToolbar("Сохранить");
 
-        dialogSteps.openItemOnTabWithInnerObjects("Ответственный за достижение результата проекта");
-        dialogSteps.fillValuesInFields(tab2_items_Step10).clickButtonInMainToolbar("Сохранить");
-
-
-        dialogSteps.openItemOnTabWithInnerObjects("Участник проекта");
-        dialogSteps.fillValuesInFields(tab2_items_Step10).clickButtonInMainToolbar("Сохранить");
-
+        dialogSteps.openItemOnTabWithInnerObjects(tab2_items3_Step10);
+        dialogSteps.fillValuesInFields(tab2_items3_Step10).clickButtonInMainToolbar("Сохранить");
 
         dialogSteps.clickButtonInMainToolbar("Направить на согласование");
         dialogSteps.logoutViaClearingBrowserCache();
@@ -299,7 +294,6 @@ public class ProjectTest extends ProjectBP {
         dialogSteps.clickButtonInMainToolbar("Согласовать");
         dialogSteps.logoutViaClearingBrowserCache();
     }
-
 
 
     //Утверждение паспорта проекта Проектным комитетом. - МайоровМА
