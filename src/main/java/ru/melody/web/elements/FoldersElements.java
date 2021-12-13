@@ -17,22 +17,21 @@ public class FoldersElements {
      * Элемент для выбора главного ПМ
      */
     public SelenideElement getMainItemOfMenuTree(String nameOfFolder) {
-        return $(By.xpath("//*[contains(@class,\"x-menu\")]//*[text() ='" + nameOfFolder + "']"));
-
+        return $(By.xpath("//*[contains(@class,\"menu\")]//*[text() ='" + nameOfFolder + "']"));
     }
 
     /**
      * Элемент для открытия главного ПМ
      */
     public SelenideElement getTriggerForOpenMainItemOfMenuTree(String nameOfFolder) {
-        return $(By.xpath("//tr[@class=\"  x-grid-row\"]//*[contains(@class,\"x-menu\")]//*[text()='" + nameOfFolder + "']/ancestor::div[@class=\"x-menu-item-wrapper\"]//div[@class=\"x-menu-block  x-tree-elbow-img x-tree-elbow-plus x-tree-expander\"]"));
+        return $(By.xpath("//tr[@class=\"  x-grid-row\"]//*[contains(@class,\"menu\")]//*[text()='" + nameOfFolder + "']/ancestor::div[contains(@class,\"menu-item-wrapper\")]//div[contains(@class,\"tree-expander\")]"));
     }
 
     /**
      * Элемент для закрытия главного ПМ
      */
     public SelenideElement getTriggerForCloseMainItemOfMenuTree(String nameOfFolder) {
-        return $(By.xpath("//tr[@class=\"x-grid-tree-node-expanded  x-grid-row\"]//*[contains(@class,\"x-menu\")]//*[text()='" + nameOfFolder + "']/ancestor::div[@class=\"x-menu-item-wrapper\"]//div[@class=\"x-menu-block  x-tree-elbow-img x-tree-elbow-plus x-tree-expander\"]"));
+        return $(By.xpath("//tr[@class=\"x-grid-tree-node-expanded  x-grid-row\"]//*[contains(@class,\"menu\")]//*[text()='" + nameOfFolder + "']/ancestor::div[contains(@class,\"menu-item-wrapper\")] //div[contains(@class,\"tree-expander\")]"));
     }
 
     /**

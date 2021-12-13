@@ -8,7 +8,7 @@ public class TextMessagesVerifications extends AssertsForDialog  {
 
     TextMessagesVerifications verifyTextMessageInAlertDialog(String textMessage) {
         Alert alertDialog = new AlertDialog();
-        alertDialog.verifyTextMessage().getTextMessage().shouldHave(Condition.text(textMessage));
+        alertDialog.verifyTextMessage().getTextMessage().waitUntil(Condition.text(textMessage), 20000);
         return this;
     }
 
