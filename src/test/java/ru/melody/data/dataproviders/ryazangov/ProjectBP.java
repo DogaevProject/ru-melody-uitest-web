@@ -7,10 +7,11 @@ import ru.melody.web.model.Pages.Operations.AdditionOperation;
 import ru.melody.web.model.Pages.Operations.Operation;
 
 import static ru.melody.utils.GenericDate.getDateWithDaysShifting;
+import static ru.melody.utils.GenericDate.nowDateWithoutTime;
 
 public class ProjectBP extends Ryazangov {
 
-    protected String nameOfObjectForOpenInTheGrid = "13/12 1"; // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
+    protected String nameOfObjectForOpenInTheGrid = nowDateWithoutTime() + " WD_" + randomString(20); // nameOfObjectForOpenInTheGrid - отображаемое в гриде название объекта.  Это м.б любой текст по которому можно отличить нужный объект от остальных.
 
     private String mayor = "Майоров М.А. (министр имущественных и земельных отношений Рязанской области)";
 
